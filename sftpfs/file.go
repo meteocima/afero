@@ -14,12 +14,14 @@
 package sftpfs
 
 import (
-	"github.com/pkg/sftp"
 	"os"
+
+	"github.com/pkg/sftp"
 )
 
 type File struct {
 	fd *sftp.File
+	c  *sftp.Client
 }
 
 func FileOpen(s *sftp.Client, name string) (*File, error) {
@@ -27,7 +29,7 @@ func FileOpen(s *sftp.Client, name string) (*File, error) {
 	if err != nil {
 		return &File{}, err
 	}
-	return &File{fd: fd}, nil
+	return &File{fd: fd, c: s}, nil
 }
 
 func FileCreate(s *sftp.Client, name string) (*File, error) {
@@ -35,7 +37,7 @@ func FileCreate(s *sftp.Client, name string) (*File, error) {
 	if err != nil {
 		return &File{}, err
 	}
-	return &File{fd: fd}, nil
+	return &File{fd: fd, c: s}, nil
 }
 
 func (f *File) Close() error {
@@ -69,7 +71,7 @@ func (f *File) ReadAt(b []byte, off int64) (n int, err error) {
 
 // TODO
 func (f *File) Readdir(count int) (res []os.FileInfo, err error) {
-	return nil, nil
+	return f.c.ReadDir(f.fd.Name())
 }
 
 // TODO
