@@ -15,6 +15,7 @@ package sftpfs
 
 import (
 	"os"
+	"path/filepath"
 
 	"github.com/pkg/sftp"
 )
@@ -69,14 +70,17 @@ func (f *File) ReadAt(b []byte, off int64) (n int, err error) {
 	return 0, nil
 }
 
-// TODO
 func (f *File) Readdir(count int) (res []os.FileInfo, err error) {
 	return f.c.ReadDir(f.fd.Name())
 }
 
-// TODO
 func (f *File) Readdirnames(n int) (names []string, err error) {
-	return nil, nil
+	fi, err := f.Readdir(n)
+	names = make([]string, len(fi))
+	for i, f := range fi {
+		_, names[i] = filepath.Split(f.Name())
+	}
+	return names, err
 }
 
 func (f *File) Seek(offset int64, whence int) (int64, error) {
