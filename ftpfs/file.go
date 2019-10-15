@@ -28,12 +28,12 @@ const (
 )
 
 type File struct {
-	writePipe *os.File
-	readPipe  *os.File
-	mode      fileMode
-	name      string
-	conn      *ftp.ServerConn
-	fs        *Fs
+	writePipe    *os.File
+	readResponse *ftp.Response
+	mode         fileMode
+	name         string
+	conn         *ftp.ServerConn
+	fs           *Fs
 }
 
 func FileOpen(fs *Fs, name string) (*File, error) {
@@ -73,7 +73,15 @@ func (f *File) Truncate(size int64) error {
 }
 
 func (f *File) Read(b []byte) (n int, err error) {
-	return 0, nil
+	if f.readResponse == nil {
+		f.readResponse, err = f.conn.Retr(f.name)
+		if err != nil {
+			return 0, nil
+		}
+
+	}
+
+	return f.readResponse.Read(b)
 }
 
 // TODO
