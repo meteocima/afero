@@ -49,8 +49,8 @@ func (f *File) Close() error {
 		return f.writePipe.Close()
 	}
 
-	if f.readPipe != nil {
-		return f.readPipe.Close()
+	if f.readResponse != nil {
+		return f.readResponse.Close()
 	}
 
 	return nil
