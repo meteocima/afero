@@ -56,8 +56,8 @@ func (s Fs) Disconnect() {
 
 func (s Fs) Name() string { return "ftpfs" }
 
-func (s Fs) Create(name string) (afero.File, error) {
-	return FileCreate(s.client, name)
+func (s *Fs) Create(name string) (afero.File, error) {
+	return FileCreate(s, name)
 }
 
 func (s Fs) Mkdir(name string, perm os.FileMode) error {
@@ -109,8 +109,8 @@ func (s Fs) MkdirAll(path string, perm os.FileMode) error {
 	return nil
 }
 
-func (s Fs) Open(name string) (afero.File, error) {
-	return FileOpen(s.client, name)
+func (s *Fs) Open(name string) (afero.File, error) {
+	return FileOpen(s, name)
 }
 
 func (s Fs) OpenFile(name string, flag int, perm os.FileMode) (afero.File, error) {

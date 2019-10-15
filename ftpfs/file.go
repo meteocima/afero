@@ -52,6 +52,8 @@ func (f *File) Close() error {
 	if f.readPipe != nil {
 		return f.readPipe.Close()
 	}
+
+	return nil
 }
 
 func (f *File) Name() string {
@@ -71,7 +73,7 @@ func (f *File) Truncate(size int64) error {
 }
 
 func (f *File) Read(b []byte) (n int, err error) {
-	return f.fd.Read(b)
+	return 0, nil
 }
 
 // TODO
