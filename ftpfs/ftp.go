@@ -210,3 +210,7 @@ func (s Fs) Chmod(name string, mode os.FileMode) error {
 func (s Fs) Chtimes(name string, atime time.Time, mtime time.Time) error {
 	return nil //s.client.Chtimes(name, atime, mtime)
 }
+
+func (s Fs) Link(name, targetDir string) error {
+	panic("not implemented")
+}

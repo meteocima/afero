@@ -45,6 +45,10 @@ func (u *CopyOnWriteFs) isBaseFile(name string) (bool, error) {
 	return true, err
 }
 
+func (u *CopyOnWriteFs) Link(name, targetDir string) error {
+	panic("not implemented")
+}
+
 func (u *CopyOnWriteFs) copyToLayer(name string) error {
 	return copyToLayer(u.base, u.layer, name)
 }

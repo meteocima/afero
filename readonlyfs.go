@@ -24,6 +24,10 @@ func (r *ReadOnlyFs) Chtimes(n string, a, m time.Time) error {
 	return syscall.EPERM
 }
 
+func (r *ReadOnlyFs) Link(name, targetDir string) error {
+	panic("not implemented")
+}
+
 func (r *ReadOnlyFs) Chmod(n string, m os.FileMode) error {
 	return syscall.EPERM
 }

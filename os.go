@@ -16,6 +16,8 @@ package afero
 
 import (
 	"os"
+	"path"
+	"path/filepath"
 	"time"
 )
 
@@ -98,4 +100,8 @@ func (OsFs) Chtimes(name string, atime time.Time, mtime time.Time) error {
 func (OsFs) LstatIfPossible(name string) (os.FileInfo, bool, error) {
 	fi, err := os.Lstat(name)
 	return fi, true, err
+}
+
+func (OsFs) Link(name, targetDir string) error {
+	return os.Symlink(name, path.Join(targetDir, filepath.Base(name)))
 }

@@ -64,6 +64,10 @@ func (r *RegexpFs) Name() string {
 	return "RegexpFs"
 }
 
+func (r *RegexpFs) Link(name, targetDir string) error {
+	panic("not implemented")
+}
+
 func (r *RegexpFs) Stat(name string) (os.FileInfo, error) {
 	if err := r.dirOrMatches(name); err != nil {
 		return nil, err

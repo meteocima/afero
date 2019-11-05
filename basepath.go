@@ -76,6 +76,20 @@ func (b *BasePathFs) Chtimes(name string, atime, mtime time.Time) (err error) {
 	return b.source.Chtimes(name, atime, mtime)
 }
 
+func (b *BasePathFs) Link(name, targetDir string) error {
+	nameAbs, err := b.RealPath(name)
+	if err != nil {
+		return &os.PathError{Op: "Link", Path: name, Err: err}
+	}
+
+	targetDirAbs, err := b.RealPath(targetDir)
+	if err != nil {
+		return &os.PathError{Op: "Link", Path: targetDir, Err: err}
+	}
+
+	return b.source.Link(nameAbs, targetDirAbs)
+}
+
 func (b *BasePathFs) Chmod(name string, mode os.FileMode) (err error) {
 	if name, err = b.RealPath(name); err != nil {
 		return &os.PathError{Op: "chmod", Path: name, Err: err}

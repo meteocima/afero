@@ -15,10 +15,12 @@ package sftpfs
 
 import (
 	"os"
+	"path"
+	"path/filepath"
 	"time"
 
-	"github.com/pkg/sftp"
 	"github.com/parro-it/afero"
+	"github.com/pkg/sftp"
 )
 
 // Fs is a afero.Fs implementation that uses functions provided by the sftp package.
@@ -102,10 +104,27 @@ func (s Fs) Remove(name string) error {
 	return s.client.Remove(name)
 }
 
-func (s Fs) RemoveAll(path string) error {
-	// TODO have a look at os.RemoveAll
-	// https://github.com/golang/go/blob/master/src/os/path.go#L66
-	return nil
+func (s Fs) RemoveAll(dirPath string) error {
+	files, err := s.client.ReadDir(dirPath)
+	if err != nil {
+		return err
+	}
+
+	for _, file := range files {
+		name := path.Join(dirPath, file.Name())
+		if file.IsDir() {
+			err = s.RemoveAll(name)
+		} else {
+			err = s.Remove(name)
+		}
+
+		if err != nil {
+			return err
+		}
+	}
+
+	return s.client.RemoveDirectory(dirPath)
+
 }
 
 func (s Fs) Rename(oldname, newname string) error {
@@ -126,4 +145,8 @@ func (s Fs) Chmod(name string, mode os.FileMode) error {
 
 func (s Fs) Chtimes(name string, atime time.Time, mtime time.Time) error {
 	return s.client.Chtimes(name, atime, mtime)
+}
+
+func (s Fs) Link(name, targetDir string) error {
+	return s.client.Symlink(name, path.Join(targetDir, filepath.Base(name)))
 }

@@ -45,6 +45,10 @@ func (m *MemMapFs) getData() map[string]*mem.FileData {
 	return m.data
 }
 
+func (m *MemMapFs) Link(name, targetDir string) error {
+	panic("not implemented")
+}
+
 func (*MemMapFs) Name() string { return "MemMapFS" }
 
 func (m *MemMapFs) Create(name string) (File, error) {

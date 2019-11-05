@@ -75,6 +75,10 @@ func (u *CacheOnReadFs) copyToLayer(name string) error {
 	return copyToLayer(u.base, u.layer, name)
 }
 
+func (b *CacheOnReadFs) Link(name, targetDir string) error {
+	panic("not implemented")
+}
+
 func (u *CacheOnReadFs) Chtimes(name string, atime, mtime time.Time) error {
 	st, _, err := u.cacheStatus(name)
 	if err != nil {
