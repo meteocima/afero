@@ -570,7 +570,7 @@ func TestReaddir(t *testing.T) {
 	}
 }
 
-// https://github.com/parro-it/afero/issues/169
+// https://github.com/meteocima/afero/issues/169
 func TestReaddirRegularFile(t *testing.T) {
 	defer removeAllTestFiles(t)
 	for _, fs := range Fss {

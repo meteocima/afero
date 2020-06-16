@@ -2,7 +2,7 @@
 
 A FileSystem Abstraction System for Go
 
-[![Build Status](https://travis-ci.org/spf13/afero.svg)](https://travis-ci.org/spf13/afero) [![Build status](https://ci.appveyor.com/api/projects/status/github/spf13/afero?branch=master&svg=true)](https://ci.appveyor.com/project/spf13/afero) [![GoDoc](https://godoc.org/github.com/parro-it/afero?status.svg)](https://godoc.org/github.com/parro-it/afero) [![Join the chat at https://gitter.im/spf13/afero](https://badges.gitter.im/Dev%20Chat.svg)](https://gitter.im/spf13/afero?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/spf13/afero.svg)](https://travis-ci.org/spf13/afero) [![Build status](https://ci.appveyor.com/api/projects/status/github/spf13/afero?branch=master&svg=true)](https://ci.appveyor.com/project/spf13/afero) [![GoDoc](https://godoc.org/github.com/meteocima/afero?status.svg)](https://godoc.org/github.com/meteocima/afero) [![Join the chat at https://gitter.im/spf13/afero](https://badges.gitter.im/Dev%20Chat.svg)](https://gitter.im/spf13/afero?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # Overview
 
@@ -50,11 +50,11 @@ A few different ways you could use Afero:
 
 First use go get to install the latest version of the library.
 
-    $ go get github.com/parro-it/afero
+    $ go get github.com/meteocima/afero
 
 Next include Afero in your application.
 ```go
-import "github.com/parro-it/afero"
+import "github.com/meteocima/afero"
 ```
 
 ## Step 2: Declare a backend
@@ -151,7 +151,7 @@ Walk(root string, walkFn filepath.WalkFunc) error
 WriteFile(filename string, data []byte, perm os.FileMode) error
 WriteReader(path string, r io.Reader) (err error)
 ```
-For a complete list see [Afero's GoDoc](https://godoc.org/github.com/parro-it/afero)
+For a complete list see [Afero's GoDoc](https://godoc.org/github.com/meteocima/afero)
 
 They are available under two different approaches to use. You can either call
 them directly where the first parameter of each function will be the file
@@ -405,7 +405,7 @@ Googles very well.
 
 ## Release Notes
 
-See the [Releases Page](https://github.com/spf13/afero/releases).
+See the [Releases Page](https://github.com/meteocima/afero/releases).
 
 ## Contributing
 
@@ -427,4 +427,4 @@ Names in no particular order:
 ## License
 
 Afero is released under the Apache 2.0 license. See
-[LICENSE.txt](https://github.com/parro-it/afero/blob/master/LICENSE.txt)
+[LICENSE.txt](https://github.com/meteocima/afero/blob/master/LICENSE.txt)

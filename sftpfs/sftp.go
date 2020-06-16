@@ -19,7 +19,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/parro-it/afero"
+	"github.com/meteocima/afero"
 	"github.com/pkg/sftp"
 )
 

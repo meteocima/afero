@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/jlaffaye/ftp"
-	"github.com/parro-it/afero"
+	"github.com/meteocima/afero"
 )
 
 // Fs is a afero.Fs implementation that uses functions provided by the sftp package.

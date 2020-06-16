@@ -7,7 +7,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/spf13/afero"
+	"github.com/meteocima/afero"
 )
 
 type Fs struct {
@@ -44,6 +44,10 @@ func New(r *zip.Reader) afero.Fs {
 		}
 	}
 	return fs
+}
+
+func (fs *Fs) Link(name, targetDir string) error {
+	return syscall.EPERM
 }
 
 func (fs *Fs) Create(name string) (afero.File, error) { return nil, syscall.EPERM }

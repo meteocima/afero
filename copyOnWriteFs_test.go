@@ -27,7 +27,7 @@ func TestCopyOnWrite(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	// https://github.com/parro-it/afero/issues/189
+	// https://github.com/meteocima/afero/issues/189
 	// We want the composite file system to behave like the OS file system
 	// on Mkdir and MkdirAll
 	for _, fs := range []Fs{osFs, compositeFs} {

@@ -22,7 +22,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/parro-it/afero/mem"
+	"github.com/meteocima/afero/mem"
 )
 
 type MemMapFs struct {
