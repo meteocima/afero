@@ -105,3 +105,11 @@ func (OsFs) LstatIfPossible(name string) (os.FileInfo, bool, error) {
 func (OsFs) Link(name, targetDir string) error {
 	return os.Symlink(name, path.Join(targetDir, filepath.Base(name)))
 }
+
+func (OsFs) SymlinkIfPossible(oldname, newname string) error {
+	return os.Symlink(oldname, newname)
+}
+
+func (OsFs) ReadlinkIfPossible(name string) (string, error) {
+	return os.Readlink(name)
+}
